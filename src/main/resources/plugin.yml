@@ -1,0 +1,6 @@
+name: BCInvLib
+version: ${project.version}
+main: com.github.syuchan1005.bcinvlib.BCInvLib
+authors: [syu_chan_1005]
+description:  Inventory UI can be easily created!
+website: https://twitter.com/syu_chan_1005
