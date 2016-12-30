@@ -25,6 +25,15 @@ public abstract class Panel implements Listener, InventoryHolder {
 		player.openInventory(this.getInventory());
 	}
 
+	public void hide(Player player) {
+		player.closeInventory();
+	}
+
+	public void setComponent(int position, Component component) {
+		component.setPanel(this);
+		components[position] = component;
+	}
+
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		boolean cancel = false;
@@ -32,20 +41,22 @@ public abstract class Panel implements Listener, InventoryHolder {
 		if (inventory.getHolder().equals(this)) {
 			boolean isShift = false;
 			Component component = components[event.getSlot()];
-			switch (event.getClick()) {
-				case SHIFT_LEFT:
-					isShift = true;
-				case LEFT:
-					cancel = component.onLeftClick(isShift);
-					break;
-				case SHIFT_RIGHT:
-					isShift = true;
-				case RIGHT:
-					cancel = component.onRightClick(isShift);
-					break;
-				default:
-					cancel = true;
-					break;
+			if (component != null) {
+				switch (event.getClick()) {
+					case SHIFT_LEFT:
+						isShift = true;
+					case LEFT:
+						cancel = component.onLeftClick(isShift);
+						break;
+					case SHIFT_RIGHT:
+						isShift = true;
+					case RIGHT:
+						cancel = component.onRightClick(isShift);
+						break;
+					default:
+						cancel = true;
+						break;
+				}
 			}
 		}
 		event.setCancelled(cancel);

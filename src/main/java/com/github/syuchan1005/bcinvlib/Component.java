@@ -8,12 +8,21 @@ import java.util.function.BiFunction;
  * Created by syuchan on 2016/12/20.
  */
 public class Component {
+	private Panel panel;
 	private ItemStack displayItem;
 	private BiFunction<Component, Boolean, Boolean> rightClickBiFunction;
 	private BiFunction<Component, Boolean, Boolean> leftClickBiFunction;
 
 	protected Component(ItemStack displayItem) {
 		this.displayItem = displayItem;
+	}
+
+	public Panel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(Panel panel) {
+		this.panel = panel;
 	}
 
 	public ItemStack getDisplayItem() {

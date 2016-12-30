@@ -21,9 +21,14 @@ public final class BCInvLib extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
-		if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-			ChestPanel chestPanel = new ChestPanel(instance, 9, 1);
-			chestPanel.setComponent(0, 0, new Button(new ItemStack(Material.STAINED_GLASS_PANE)));
+		if (event.getAction() == Action.PHYSICAL) {
+			ChestPanel chestPanel = new ChestPanel(instance, 1, new ItemStack(Material.STAINED_GLASS_PANE));
+			ItemStack okItem = new ItemStack(Material.STAINED_GLASS_PANE);
+			okItem.setDurability((short) 5);
+			chestPanel.setComponent(0, new Button(okItem));
+			ItemStack ngItem = new ItemStack(Material.STAINED_GLASS_PANE);
+			ngItem.setDurability((short) 14);
+			chestPanel.setComponent(8, new Button(ngItem));
 			chestPanel.show(event.getPlayer());
 		}
 	}
